@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edu-shorts-studio"
+version = "0.1.0"
+description = "Codex harness for evidence-grounded educational shorts packages"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "markitdown[pptx]>=0.1.4",
+    "openai>=1.0",
+    "python-multipart>=0.0.20",
+    "supabase>=2.0",
+    "uvicorn[standard]>=0.30",
+]
+classifiers = [
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+
+[project.scripts]
+edu-shorts = "edu_shorts.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

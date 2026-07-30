@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: edu-shorts-api
+    runtime: python
+    buildCommand: pip install .
+    startCommand: uvicorn edu_shorts.web_api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: WEB_ORIGIN
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+  - type: worker
+    name: edu-shorts-worker
+    runtime: python
+    buildCommand: pip install .
+    startCommand: python -m edu_shorts.worker
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false

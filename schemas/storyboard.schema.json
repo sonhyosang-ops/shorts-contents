@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "aspect_ratio": {"const": "9:16"},
+    "style_bible": {
+      "type": "object",
+      "properties": {
+        "visual_style": {"type": "string"},
+        "characters": {"type": "string"},
+        "environment": {"type": "string"},
+        "palette": {"type": "string"},
+        "continuity": {"type": "array", "items": {"type": "string"}}
+      },
+      "required": ["visual_style", "characters", "environment", "palette", "continuity"],
+      "additionalProperties": false
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "properties": {
+          "scene_id": {"type": "string"},
+          "start": {"type": "number", "minimum": 0},
+          "end": {"type": "number", "minimum": 0},
+          "narration": {"type": "string"},
+          "core_action": {"type": "string", "minLength": 1},
+          "visual": {"type": "string"},
+          "camera": {"type": "string"},
+          "graphics": {"type": "string"},
+          "video_prompt": {"type": "string"},
+          "subtitle": {"type": "string"},
+          "sfx": {"type": "string"}
+        },
+        "required": [
+          "scene_id",
+          "start",
+          "end",
+          "narration",
+          "core_action",
+          "visual",
+          "camera",
+          "graphics",
+          "video_prompt",
+          "subtitle",
+          "sfx"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "music_direction": {"type": "string"},
+    "transition_direction": {"type": "string"}
+  },
+  "required": ["aspect_ratio", "style_bible", "scenes", "music_direction", "transition_direction"],
+  "additionalProperties": false
+}

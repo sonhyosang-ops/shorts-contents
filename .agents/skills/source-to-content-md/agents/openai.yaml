@@ -1,0 +1,4 @@
+interface:
+  display_name: "Source to Content Markdown"
+  short_description: "원자료를 근거 보존 content.md로 정규화"
+  default_prompt: "Use $source-to-content-md to extract the provided teaching materials into a source-grounded content.md."

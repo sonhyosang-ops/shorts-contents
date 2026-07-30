@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "reviewer": {"enum": ["education", "video"]},
+    "pass": {"type": "boolean"},
+    "score": {"type": "number", "minimum": 0, "maximum": 100},
+    "summary": {"type": "string"},
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {"type": "number"}
+    },
+    "critical_issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {"type": "string"},
+          "severity": {"enum": ["critical", "major", "minor"]},
+          "target_stage": {"enum": ["analysis", "narration", "storyboard"]},
+          "scene_ids": {"type": "array", "items": {"type": "string"}},
+          "evidence": {"type": "string"},
+          "instruction": {"type": "string"}
+        },
+        "required": [
+          "code",
+          "severity",
+          "target_stage",
+          "scene_ids",
+          "evidence",
+          "instruction"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "user_confirmation": {"type": "array", "items": {"type": "string"}}
+  },
+  "required": [
+    "reviewer",
+    "pass",
+    "score",
+    "summary",
+    "metrics",
+    "critical_issues",
+    "user_confirmation"
+  ],
+  "additionalProperties": false
+}
